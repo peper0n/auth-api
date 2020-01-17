@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Validation;
+namespace App\Services;
 
-class UserValidation {
+class ValidationService {
 
 	public function registrationRules() {
 		return [

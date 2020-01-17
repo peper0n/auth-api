@@ -2,6 +2,8 @@
 
 namespace App\Jobs;
 
+use Illuminate\Support\Facades\Mail;
+
 class SendConfirmation extends Job
 {
 	protected $code = 'code';
@@ -25,6 +27,6 @@ class SendConfirmation extends Job
      */
     public function handle()
     {
-        info('123');
+        //Mail::to(); send mail here
     }
 }

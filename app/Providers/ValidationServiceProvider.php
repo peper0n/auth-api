@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use App\Services\AuthService;
+use App\Services\ValidationService;
 use Illuminate\Support\ServiceProvider;
 
-class AuthServiceProvider extends ServiceProvider {
+class ValidationServiceProvider extends ServiceProvider {
 
 	/**
 	 * Register any application services.
@@ -22,12 +22,12 @@ class AuthServiceProvider extends ServiceProvider {
 	 * @return void
 	 */
 	public function boot() {
-		$this->app->singleton('AuthService', function ($app) {
-			return new AuthService();
+		$this->app->singleton('ValidationService', function ($app) {
+			return new ValidationService();
 		});
 	}
 
 	public function provides() {
-		return ['AuthService'];
+		return ['ValidationService'];
 	}
 }

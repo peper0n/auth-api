@@ -2,44 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Validation\UserValidation;
-use App\Services\AuthService;
+
+use \AuthService;
+use \ValidationService;
 
 class AuthController extends Controller {
 
 	public function login(Request $request) {
-		$rules = new UserValidation();
-		$this->validate($request, $rules->loginRules());
 
-		$regService = new AuthService();
-		return $regService->login($request);
+		$this->validate($request, ValidationService::loginRules());
 
-
-
+		return AuthService::login($request);
 	}
 
 	public function register(Request $request) {
-		$rules = new UserValidation();
 
-		$this->validate($request, $rules->registrationRules());
+		$this->validate($request, ValidationService::registrationRules());
 
-		$regService = new AuthService();
-		$regService->registerNewUser($request);
+		AuthService::registerNewUser($request);
 
 		return response('You are registered successfully! Check your email for confirmation code!', 200);
 	}
 
 	public function confirmEmail(Request $request) {
 
-		$rules = new UserValidation();
-		$this->validate($request, $rules->confirmationRules());
+		$this->validate($request, ValidationService::confirmationRules());
 
-		$regService = new AuthService();
-		$confirmation = $regService->confirmEmail($request);
-
-		return $confirmation;
+		return AuthService::confirmEmail($request);
 	}
 
 }
